@@ -44,6 +44,6 @@ Since each car can only be sold once, each car will have a 1 to 1 link to the tr
 
 <!-- Programs used -->
 ## Programs used
-Programs use to create the schema is from (lucid chart)[https://www.lucidchart.com/pages/]
+Programs use to create the schema is from [lucid chart](https://www.lucidchart.com/pages)
 
-Programs use to create docker and test is from (docker)[https://www.docker.com/products/personal/] 
+Programs use to create docker and test is from [docker](https://www.docker.com/products/personal)
