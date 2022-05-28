@@ -41,6 +41,8 @@ After which to ensure that the price field is clean, we remove any letters and l
 Once data is clean, we can combine them together to form a single dataframe
 Lastly, to get the price that is more than 100, we can easily find it by converting the cleaned price to float variable and take those that are more than 100.
 
+
+<!-- AutoRun Commands -->
 ## Autorun commands
 To schedule cron job, simply run the sh file on linux, that is set as 0 1 * * * which translate to 1am to run the python file. Also the command will check if python is installed first to make sure it contains the software needed to run the script.
 
