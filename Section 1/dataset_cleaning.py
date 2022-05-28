@@ -4,7 +4,9 @@ import pandas as pd
 import numpy as np
 
 # setting up base dir and base setting of codes
-path_of_files = r"C:\Users\Darren\Documents\GitHub\dataeng_test"
+path_of_files = r"C:\Users\Darren\Documents\GitHub\dataeng_test\\"
+output_path = r"C:\Users\Darren\Documents\GitHub\dataeng_test\Section 1\\"
+
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
 
 
@@ -57,20 +59,40 @@ def priceClean(price):
 
 # function to return a series which contains True for values larger than 100
 def above100(price):
-    pass
+    price = price.astype(float)
+    above_100 = np.where(price > 100, True,False)
+    return above_100
 
+
+# main function containing steps from reading data to uploading clean data
 def main():
+    # reading both dataset
     os.chdir(path_of_files)
     dataset1 = pd.read_csv("dataset1.csv")
     dataset2 = pd.read_csv("dataset2.csv")
+    # dropping if name is missing
     dataset1.dropna(subset = ['name'], inplace = True)
     dataset2.dropna(subset = ['name'], inplace = True)
+    
+    # cleaning name column to first name, last name
     dataset1['first_name'], dataset1['last_name'] = nameClean(dataset1['name'])
     dataset2['first_name'], dataset2['last_name'] = nameClean(dataset2['name'])
+    
+    # cleaning price to remove prepending 0 and strings
     dataset1['price_clean']= priceClean(dataset1['price'])
     dataset2['price_clean']= priceClean(dataset2['price'])
     
+    # appending both dataset together
+    full_dataset = pd.concat([dataset1,dataset2], ignore_index = True)
     
+    # adding column for price above 100
+    full_dataset['above_100'] = above100(full_dataset['price_clean'])
     
-## cleaning up price column to make it to float only
-dataset2['price2'] = dataset2['price'].replace(r'\D',"")
+    # reindex columns to needed columns only
+    full_dataset = full_dataset.reindex(columns = ['first_name', 'last_name','price_clean', 'above_100'])
+    
+    # exporting dataset
+    full_dataset.to_csv(output_path + "cleaned.csv", index = False)
+    
+if __name__ == "__main__":
+    main()
