@@ -17,6 +17,7 @@ CREATE TABLE transaction_record(
     customer_name           VARCHAR(50),
     customer_phone          NUMERIC(12),
     characteristic_car      VARCHAR(100),
+    transaction_date        DATETIME
     FOREIGN KEY (sales_person_id) REFERENCES sales_person(sales_person_id),
     FOREIGN KEY (car_serial_number) REFERENCES car(serial_number)
 );
