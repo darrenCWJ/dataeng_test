@@ -4,8 +4,8 @@ import pandas as pd
 import numpy as np
 
 # setting up base dir and base setting of codes
-path_of_files = r"C:\Users\Darren\Documents\GitHub\dataeng_test\\"
-output_path = r"C:\Users\Darren\Documents\GitHub\dataeng_test\Section 1\\"
+path_of_files = os.environ['INPUT_DIR']
+output_path = os.environ['OUTPUT_DIR']
 
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
 
@@ -67,9 +67,8 @@ def above100(price):
 # main function containing steps from reading data to uploading clean data
 def main():
     # reading both dataset
-    os.chdir(path_of_files)
-    dataset1 = pd.read_csv("dataset1.csv")
-    dataset2 = pd.read_csv("dataset2.csv")
+    dataset1 = pd.read_csv(path_of_files + "dataset1.csv")
+    dataset2 = pd.read_csv(path_of_files + "dataset2.csv")
     # dropping if name is missing
     dataset1.dropna(subset = ['name'], inplace = True)
     dataset2.dropna(subset = ['name'], inplace = True)
@@ -92,7 +91,7 @@ def main():
     full_dataset = full_dataset.reindex(columns = ['first_name', 'last_name','price_clean', 'above_100'])
     
     # exporting dataset
-    full_dataset.to_csv(output_path + "cleaned.csv", index = False)
+    full_dataset.to_csv(output_path + "processed_dataset.csv", index = False)
     
 if __name__ == "__main__":
     main()
