@@ -1,6 +1,7 @@
 ## Table of Contents
 -[About the Section](#about-the-section)
 -[Thought Process](#thought-process)
+-[Conclusion](#conclusion)
 
 <!-- ABOUT THE SECTION -->
 ## About The Section
@@ -25,3 +26,8 @@ Attribute Values:
    safety    :   low, med, high
    
 ---
+
+
+<!-- Conclusion -->
+## Conclusion
+Based on the python notebook file produce, using the cariables provided from the question and using the model with the highest accuracy, The resulting output shows an array of 1 which represents low. This means that with high maintenance, 4 doors, big luggage size and good class value, the buying price is low. However because the model only have an accuracy of 30%, we cannot safely conclude that the actual buying price of this car is low
